@@ -39,7 +39,9 @@ app.use(
   }),
 );
 
-
+import { toNodeHandler } from "better-auth/node";
+import { auth } from "./lib/auth";
+app.all('/api/auth/{*any}', toNodeHandler(auth));
 
 app.get("/", (req, res) => {
   res.status(200).json({
