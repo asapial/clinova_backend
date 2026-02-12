@@ -9,10 +9,11 @@ export const auth = betterAuth({
     database: prismaAdapter(prisma, {
         provider: "postgresql",
     }),
-    emailAndPassword:{
-        enabled:true
+    emailAndPassword: {
+        enabled: true
     },
-        session: {
+    baseURL:"http://localhost:4000",
+    session: {
         cookieCache: {
             enabled: true,
             maxAge: 5 * 60, // 5 minutes
@@ -24,7 +25,7 @@ export const auth = betterAuth({
         crossSubDomainCookies: {
             enabled: false,
         },
-        disableCSRFCheck: true, 
+        disableCSRFCheck: true,
         defaultCookieAttributes: {
             sameSite: "none",
             secure: true,

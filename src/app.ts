@@ -2,6 +2,10 @@ import express, { Application } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
+import { toNodeHandler } from "better-auth/node";
+import { auth } from "./lib/auth";
+import { specialtiesRoute } from "./module/specialties/specialties.route";
+
 const app: Application = express();
 app.use(cookieParser());
 app.use(express.json());
@@ -10,6 +14,7 @@ app.use(express.json());
 // ✅ CORS setup (must be FIRST)
 const allowedOrigins = [
   "http://localhost:3000",
+  "http://localhost:4000",
 
 ].filter(Boolean);
 
@@ -39,9 +44,9 @@ app.use(
   }),
 );
 
-import { toNodeHandler } from "better-auth/node";
-import { auth } from "./lib/auth";
 app.all('/api/auth/{*any}', toNodeHandler(auth));
+
+app.use("/api/specialties",specialtiesRoute);
 
 app.get("/", (req, res) => {
   res.status(200).json({
