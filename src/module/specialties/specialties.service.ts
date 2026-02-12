@@ -25,7 +25,9 @@ const updateSpecialty= async(data:Specialty,id:string)=>{
         where:{
             id
         },
-        data
+        data:{
+            title:data.title
+        }
     })
 
     return res;
