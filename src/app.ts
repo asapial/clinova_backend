@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "./lib/auth";
 import { specialtiesRoute } from "./module/specialties/specialties.route";
+import { authRoute } from "./module/auth/auth.route";
 
 const app: Application = express();
 app.use(cookieParser());
@@ -44,9 +45,10 @@ app.use(
   }),
 );
 
-app.all('/api/auth/{*any}', toNodeHandler(auth));
+// app.all('/api/auth/{*any}', toNodeHandler(auth));
 
 app.use("/api/specialties",specialtiesRoute);
+app.use("/api/auth", authRoute);
 
 app.get("/", (req, res) => {
   res.status(200).json({

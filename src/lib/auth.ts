@@ -12,7 +12,7 @@ export const auth = betterAuth({
     emailAndPassword: {
         enabled: true
     },
-    baseURL:"http://localhost:4000",
+    baseURL: "http://localhost:4000",
     session: {
         cookieCache: {
             enabled: true,
@@ -30,6 +30,14 @@ export const auth = betterAuth({
             sameSite: "none",
             secure: true,
             httpOnly: false
+        }
+    },
+    user: {
+        additionalFields: {
+            role: {
+                type: "string",
+                required: true,
+            },
         }
     }
 });
