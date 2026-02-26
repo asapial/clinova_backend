@@ -1,17 +1,12 @@
-import { NextFunction, Request, RequestHandler, Response } from "express"
-import { StatusCodes } from "http-status-codes"
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { NextFunction, Request, RequestHandler, Response } from "express";
 
-const catchAsync = (fn: RequestHandler) => {
+export const catchAsync = (fn: RequestHandler) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            await fn(req, res, next)
-        } catch (error) {
-            res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-                success: false,
-                message: error,
-            })
+            await fn(req, res, next);
+        } catch (error: any) {
+            next(error);
         }
     }
 }
-
-export default catchAsync

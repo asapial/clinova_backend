@@ -1,23 +1,16 @@
 import app from "./app";
-import { envVar } from "./config/env";
-import { prisma } from "./lib/prisma";
+import { envVars } from "./app/config/env";
+import { seedSuperAdmin } from "./app/utils/seed";
 
-
-
-
-async function main() {
+const bootstrap = async() => {
     try {
-        await prisma.$connect();
-        console.log("Connected to the database successfully.");
-
-        app.listen(envVar.PORT, () => {
-            console.log(`Server is running on http://localhost:${envVar.PORT}`);
+        await seedSuperAdmin();
+        app.listen(envVars.PORT, () => {
+            console.log(`Server is running on http://localhost:${envVars.PORT}`);
         });
     } catch (error) {
-        console.error("An error occurred:", error);
-        await prisma.$disconnect();
-        process.exit(1);
+        console.error('Failed to start server:', error);
     }
 }
 
-main();
+bootstrap();
