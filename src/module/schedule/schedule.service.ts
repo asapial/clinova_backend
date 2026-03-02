@@ -1,5 +1,5 @@
 import { addHours, addMinutes, format } from "date-fns";
-import { Prisma, Schedule } from "../../../generated/prisma/client";
+import { Prisma, Schedule } from "../../generated/prisma/client";
 import { IQueryParams } from "../../interfaces/query.interface";
 import { prisma } from "../../lib/prisma";
 import { QueryBuilder } from "../../utils/QueryBuilder";

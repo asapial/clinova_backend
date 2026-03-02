@@ -1,4 +1,4 @@
-import { DoctorSchedules, Prisma } from "../../../generated/prisma/client";
+import { DoctorSchedules, Prisma } from "../../generated/prisma/client";
 import { IQueryParams } from "../../interfaces/query.interface";
 import { IRequestUser } from "../../interfaces/requestUser.interface";
 import { prisma } from "../../lib/prisma";

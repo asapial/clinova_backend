@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextFunction, Request, Response } from "express";
 import status from "http-status";
-import { Role, UserStatus } from "../../generated/prisma/enums";
+import { Role, UserStatus } from "../generated/prisma/enums";
 import { envVars } from "../config/env";
 import AppError from "../errorHelpers/AppError";
 import { prisma } from "../lib/prisma";
@@ -62,9 +62,9 @@ export const checkAuth = (...authRoles: Role[]) => async (req: Request, res: Res
                 }
 
                 req.user = {
-                    userId : user.id,
-                    role : user.role,
-                    email : user.email,
+                    userId: user.id,
+                    role: user.role,
+                    email: user.email,
                 }
             }
 

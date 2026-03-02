@@ -1,6 +1,6 @@
 import status from "http-status";
-import { Doctor, Prisma } from "../../../generated/prisma/client";
-import { UserStatus } from "../../../generated/prisma/enums";
+import { Doctor, Prisma } from "../../generated/prisma/client";
+import { UserStatus } from "../../generated/prisma/enums";
 import AppError from "../../errorHelpers/AppError";
 import { IQueryParams } from "../../interfaces/query.interface";
 import { prisma } from "../../lib/prisma";

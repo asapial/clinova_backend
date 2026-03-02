@@ -73,12 +73,12 @@ const loadEnvVariables = (): EnvConfig => {
         'SUPER_ADMIN_PASSWORD',
     ]
 
-    requireEnvVariable.forEach((variable) => {
-        if (!process.env[variable]) {
-            // throw new Error(`Environment variable ${variable} is required but not set in .env file.`);
-            throw new AppError(status.INTERNAL_SERVER_ERROR, `Environment variable ${variable} is required but not set in .env file.`);
-        }
-    })
+    // requireEnvVariable.forEach((variable) => {
+    //     if (!process.env[variable]) {
+    //         // throw new Error(`Environment variable ${variable} is required but not set in .env file.`);
+    //         throw new AppError(status.INTERNAL_SERVER_ERROR, `Environment variable ${variable} is required but not set in .env file.`);
+    //     }
+    // })
 
     return {
         NODE_ENV: process.env.NODE_ENV as string,

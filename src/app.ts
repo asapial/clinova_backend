@@ -6,19 +6,22 @@ import express, { Application, Request, Response } from "express";
 import cron from "node-cron";
 import path from "path";
 import qs from "qs";
-import { envVars } from "./app/config/env";
-import { auth } from "./app/lib/auth";
-import { globalErrorHandler } from "./app/middleware/globalErrorHandler";
-import { notFound } from "./app/middleware/notFound";
-import { AppointmentService } from "./app/module/appointment/appointment.service";
-import { PaymentController } from "./app/module/payment/payment.controller";
-import { IndexRoutes } from "./app/routes";
+// the workspace doesn't actually contain an `app/` subfolder; everything
+// is rooted in `src`. the previous imports led to runtime errors when
+// tsx tried resolving modules under `src/app/...` which don't exist.
+import { envVars } from "./config/env";
+import { auth } from "./lib/auth";
+import { globalErrorHandler } from "./middleware/globalErrorHandler";
+import { notFound } from "./middleware/notFound";
+import { AppointmentService } from "./module/appointment/appointment.service";
+import { PaymentController } from "./module/payment/payment.controller";
+import { IndexRoutes } from "./routes";
 
 const app: Application = express();
 app.set("query parser", (str : string) => qs.parse(str));
 
 app.set("view engine", "ejs");
-app.set("views",path.resolve(process.cwd(), `src/app/templates`) )
+app.set("views",path.resolve(process.cwd(), `src/templates`) )
 
 app.post("/webhook", express.raw({ type: "application/json" }), PaymentController.handleStripeWebhookEvent)
 

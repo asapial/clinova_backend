@@ -1,6 +1,9 @@
 import app from "./app";
-import { envVars } from "./app/config/env";
-import { seedSuperAdmin } from "./app/utils/seed";
+// paths previously had an extra "app/" segment that doesn't exist in the
+// project structure. all code lives directly under `src` (e.g. `src/config`)
+// so we adjust the imports accordingly.
+import { envVars } from "./config/env";
+import { seedSuperAdmin } from "./utils/seed";
 
 const bootstrap = async() => {
     try {
